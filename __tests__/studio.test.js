@@ -1,4 +1,3 @@
-const fs = require('fs');
 const pool = require('../lib/utils/pool');
 const Studio = require('../lib/models/studio');
 require('../data/data-helper');
