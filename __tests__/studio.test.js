@@ -27,4 +27,10 @@ describe('Studio class', () => {
     const allStudios = await Studio.findAll();
     expect(allStudios.length).toEqual(20);
   });
+
+  it('should find a studio by id via GET', async() => {
+    const firstStudio = (await Studio.findAll())[0];
+    const studio = await Studio.findById(firstStudio.id);
+    expect(studio).toEqual(firstStudio);
+  });
 });
