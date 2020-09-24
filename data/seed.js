@@ -1,5 +1,6 @@
 const Studio = require('../lib/models/studio');
 const Actor = require('../lib/models/actor');
+const Reviewer = require('../lib/models/reviewer');
 const chance = require('chance').Chance();
 
 const seedStudios = async({ studioCount = 20 } = {}) => {
@@ -23,5 +24,14 @@ const seedActors = async({ actorCount = 20 } = {}) => {
   await Promise.all(actorsToCreate.map(actor => Actor.insert(actor)));
 };
 
-module.exports = { seedStudios, seedActors };
+const seedReviewers = async({ reviewerCount = 20 } = {}) => {
+  const reviewersToCreate = [...Array(reviewerCount)]
+    .map(() => ({
+      name: chance.animal(),
+      company: chance.animal(),
+    }));
+  await Promise.all(reviewersToCreate.map(reviewer => Reviewer.insert(reviewer)));
+};
+
+module.exports = { seedStudios, seedActors, seedReviewers };
 
