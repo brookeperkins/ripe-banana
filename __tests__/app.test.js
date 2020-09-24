@@ -41,9 +41,9 @@ describe('ripe-banana routes', () => {
 
   it('inserts actor into database via POST', () => {
     const firstActor = {   
-    name: 'Charlie Smith',
-    dateOfBirth: '1990-01-09',
-    placeOfBirth: 'Los Angeles, California',}
+      name: 'Charlie Smith',
+      dateOfBirth: '1990-01-09',
+      placeOfBirth: 'Los Angeles, California' };
     return request(app)
       .post('/api/v1/actors')
       .send(firstActor)
@@ -52,7 +52,7 @@ describe('ripe-banana routes', () => {
         dateOfBirth: expect.any(String),
         placeOfBirth: 'Los Angeles, California',
         id: expect.any(String)
-      }))
+      }));
   });
 
   it('returns all actors via GET', () => {
@@ -65,9 +65,21 @@ describe('ripe-banana routes', () => {
     const firstActor = (await Actor.findAll())[0];
     return request(app)
       .get(`/api/v1/actors/${firstActor.id}`)
-      .then(res => expect(res.body).toEqual({...firstActor, dateOfBirth: firstActor.dateOfBirth.toISOString()}));
+      .then(res => expect(res.body).toEqual({ ...firstActor, dateOfBirth: firstActor.dateOfBirth.toISOString() }));
   });
 
-  
+  it('should insert a reviewer via POST', async() => {
+    const insertReviewer = {
+      name: 'jimmy Don',
+      company: 'jimmy Don MegaDon'
+    };
+
+    return request(app)
+      .post('/api/v1/reviewers')
+      .send(insertReviewer)
+      .then(res => expect(res.body).toEqual({ ...insertReviewer, id: expect.any(String) }));
+  });
+
+
 
 });
