@@ -1,6 +1,6 @@
-const pool = require('../lib/utils/pool');
-const Actor = require('../lib/models/actor');
-require('../data/data-helper');
+const pool = require('../../lib/utils/pool');
+const Actor = require('../../lib/models/actor');
+require('../../data/data-helper');
 
 describe('Actor class', () => {
   it('should insert an actor into the database via POST', async() => {

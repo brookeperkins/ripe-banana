@@ -1,6 +1,6 @@
-const pool = require('../lib/utils/pool');
-const Studio = require('../lib/models/studio');
-require('../data/data-helper');
+const pool = require('../../lib/utils/pool');
+const Studio = require('../../lib/models/studio');
+require('../../data/data-helper');
 
 
 describe('Studio class', () => {

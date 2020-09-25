@@ -1,6 +1,6 @@
-const pool = require('../lib/utils/pool');
-const Reviewer = require('../lib/models/reviewer');
-require('../data/data-helper');
+const pool = require('../../lib/utils/pool');
+const Reviewer = require('../../lib/models/reviewer');
+require('../../data/data-helper');
 
 describe('Reviewer class', () => {
   it('should insert a reviewer into our database via POST', async() => {

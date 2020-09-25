@@ -104,5 +104,22 @@ describe('ripe-banana routes', () => {
       .then(res => expect(res.body).toEqual({ ...updatedInfo, id: firstReviewer.id }));
   });
 
+  it('should insert a film via POST', async() => {
+    const insertedFilm = ({
+      title: 'Mr and Mrs Smith',
+      studio: 1,
+      released: 2008,
+      talent: [{
+        role: 'main character',
+        actor: 1
+      }]
+    });
+
+    return request(app)
+      .post('/api/v1/films/')
+      .send(insertedFilm)
+      .then(res => expect(res.body).toEqual({ ...insertedFilm, id: expect.any(String) }));
+  });
+
 
 });
