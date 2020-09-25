@@ -1,6 +1,6 @@
-const pool = require('../lib/utils/pool');
-const Studio = require('../lib/models/studio');
-require('../data/data-helper');
+const pool = require('../../lib/utils/pool');
+const Studio = require('../../lib/models/studio');
+require('../../data/data-helper');
 
 
 describe('Studio class', () => {
@@ -24,7 +24,7 @@ describe('Studio class', () => {
 
   it('should find all studios via GET', async() => {
     const allStudios = await Studio.findAll();
-    expect(allStudios.length).toEqual(20);
+    expect(allStudios.length).toEqual(5);
   });
 
   it('should find a studio by id via GET', async() => {

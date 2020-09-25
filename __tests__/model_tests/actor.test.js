@@ -1,6 +1,6 @@
-const pool = require('../lib/utils/pool');
-const Actor = require('../lib/models/actor');
-require('../data/data-helper');
+const pool = require('../../lib/utils/pool');
+const Actor = require('../../lib/models/actor');
+require('../../data/data-helper');
 
 describe('Actor class', () => {
   it('should insert an actor into the database via POST', async() => {
@@ -20,7 +20,7 @@ describe('Actor class', () => {
 
   it('should find all actors by GET', async() => {
     const allActors = (await Actor.findAll());
-    expect(allActors.length).toEqual(20);
+    expect(allActors.length).toEqual(5);
   });
 
   it('should find an actor by ID with GET', async() => {
