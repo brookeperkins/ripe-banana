@@ -39,7 +39,11 @@ describe('Film class', () => {
         actor: expect.any(String)
       }]
     });
-
-
   });
 });
+
+//   it('should find all the films via GET', async() => {
+//     const foundFilms = await Film.findAll();
+//     expect(foundFilms.length).toEqual(5);
+//   });
+// });

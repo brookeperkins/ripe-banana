@@ -1,6 +1,7 @@
 const Studio = require('../lib/models/studio');
 const Actor = require('../lib/models/actor');
 const Reviewer = require('../lib/models/reviewer');
+const Film = require('../lib/models/film');
 const chance = require('chance').Chance();
 
 const seedStudios = async({ studioCount = 5 } = {}) => {
@@ -33,4 +34,22 @@ const seedReviewers = async({ reviewerCount = 5 } = {}) => {
   await Promise.all(reviewersToCreate.map(reviewer => Reviewer.insert(reviewer)));
 };
 
-module.exports = { seedStudios, seedActors, seedReviewers };
+const seedFilms = async({ filmCount = 5 } = {}) => {
+  const filmsToCreate = [...Array(filmCount)]
+    .map(() => ({
+      title: chance.animal(),
+      studio: chance.integer({ min: 1, max: 5 }),
+      released: chance.year(),
+      talent: [{ 
+        role: chance.character(), 
+        actor: chance.integer({ min: 1, max: 5 }) 
+      }, 
+      {
+        role: chance.character(),
+        actor: chance.integer({ min: 1, max: 5 })
+      }],
+    }));
+  await Promise.all(filmsToCreate.map(film => Film.insert(film)));
+};
+
+module.exports = { seedStudios, seedActors, seedReviewers, seedFilms };

@@ -5,6 +5,8 @@ require('../data/data-helper');
 const Studio = require('../lib/models/studio');
 const Actor = require('../lib/models/actor');
 const Reviewer = require('../lib/models/reviewer');
+const Film = require('../lib/models/film');
+const films = require('../lib/controllers/films');
 
 describe('ripe-banana routes', () => {
 
@@ -95,7 +97,7 @@ describe('ripe-banana routes', () => {
       .then(res => expect(res.body).toEqual(firstReviewer));
   });
 
-  it('should update a reiviewer by id via PUT', async() => {
+  it('should update a reviewer by id via PUT', async() => {
     const firstReviewer = (await Reviewer.findAll())[0];
     const updatedInfo = { name: 'benjamin', company: 'Bobs Refrigeration' };
     return request(app)
@@ -120,6 +122,15 @@ describe('ripe-banana routes', () => {
       .send(insertedFilm)
       .then(res => expect(res.body).toEqual({ ...insertedFilm, id: expect.any(String) }));
   });
+
+  it('should find a film by ID', async() => {
+    const foundFilm = (await Film.findById(1));
+    return request(app)
+      .get('/api/v1/films/1')
+      .then(res => expect(res.body).toEqual(foundFilm)); 
+  });
+
+  
 
 
 });
